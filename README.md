@@ -117,19 +117,24 @@ The server includes several middleware layers:
 - Add API documentation (Swagger)
 - Implement rate limiting
 
-## Deploy to Google Cloud Functions (2nd gen)
+## Deploy to Google Cloud Functions (Gen1)
 
-Prerequisites: `gcloud` CLI installed and configured, billing enabled, a default region set.
+Prerequisites: Firebase CLI installed and configured, billing enabled.
 
 ### Local dev
 ```bash
-npm run dev            # Local Express on http://localhost:3000
-npm run serve:function # Emulates Cloud Function on http://localhost:8080
+# Install dependencies
+cd functions && npm install
+
+# Start Firebase emulator
+npm run start
 ```
 
 ### Deploy
 ```bash
-npm run deploy:function
+# Deploy to Firebase Functions
+firebase deploy --only functions
 ```
 
-This deploys an HTTP function named `api` using Node.js 20 in region `us-central1`. Adjust the region as needed.
+This deploys an HTTP function named `api` using Node.js 20. The function will be available at:
+`https://us-central1-YOUR_PROJECT_ID.cloudfunctions.net/api`

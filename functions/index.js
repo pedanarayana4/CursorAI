@@ -1,9 +1,5 @@
-const functions = require('@google-cloud/functions-framework');
+const functions = require('firebase-functions');
 const app = require('./src/app');
 
-// HTTP Cloud Function entry point
-functions.http('api', (req, res) => {
-  return app(req, res);
-});
-
-
+// HTTP Cloud Function (Gen1)
+exports.api = functions.https.onRequest(app);
